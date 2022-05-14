@@ -1,14 +1,20 @@
+// import dependencies
 import { Routes, Route } from "react-router-dom";
-import Login from "./routes/Login";
-import Register from "./routes/Register";
-import Home from "./routes/Home";
-import Navbar from "./components/Navbar";
-import NotFound from "./routes/NotFound";
-import RequireAuth from "./components/RequireAuth";
-import Review from "./routes/Review";
 import { useContext } from "react";
 import { UserContext } from "./context/UserProvider";
 
+// import routes
+import Login from "./routes/Login";
+import Register from "./routes/Register";
+import Home from "./routes/Home";
+import NotFound from "./routes/NotFound";
+import Review from "./routes/Review";
+
+// import components
+import Navbar from "./components/Navbar";
+import RequireAuth from "./components/RequireAuth";
+
+// page index
 const App = () => {
 
   const { user } = useContext(UserContext);

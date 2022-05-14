@@ -15,15 +15,16 @@ const Navbar = () => {
         }
     }
     
+    // render navbar
     return (
         <div>
             {user ? (
-                <nav className="navbar navbar-dark bg-dark">
+                <nav className="navbar ">
                     <NavLink to="/" >Inicio</NavLink>
                     <NavLink to="/review" >Reseñas</NavLink>
                     <button onClick={handleLogout}>Cerrar sesión</button>
                 </nav>) : (
-                <nav className="navbar navbar-dark bg-dark">
+                <nav className="navbar ">
                     <NavLink to="/" >Inicio</NavLink>
                     <NavLink to="/review" >Reseñas</NavLink>
                     <>

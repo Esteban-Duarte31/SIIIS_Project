@@ -1,3 +1,4 @@
+// page principale
 const Home = () => {
     return (
         <>
