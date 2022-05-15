@@ -1,10 +1,17 @@
+import { Outlet } from "react-router-dom"
+
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 
 
-const Review = () => {
+const LayoutContainerForm = () => {
     return (
+
+
+
+
+
         <div className="relative bg-white overflow-hidden">
             <div className="max-w-7xl mx-auto">
                 <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
@@ -25,10 +32,12 @@ const Review = () => {
 
 
                     </Popover>
-                    {/* login */}
-                    <div className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-
+                    {/* login or register*/}
+                    <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+                    
+                        <Outlet />
                     </div>
+
                 </div>
             </div>
             <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
@@ -39,6 +48,7 @@ const Review = () => {
                 />
             </div>
         </div>
-    );
+    )
 }
-export default Review;
+
+export default LayoutContainerForm;

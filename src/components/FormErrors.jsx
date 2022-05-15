@@ -1,7 +1,10 @@
 const FormErrors = ({ error }) => {
     return (
         <>
-            {error && <p>{error.message}</p>}
+            {error && <p className="mt-2 text-sm text-red-600 dark:text-red-500">
+                <span className="font-medium">* </span> 
+
+                {error.message}</p>}
         </>
     );
 }

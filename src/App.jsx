@@ -13,6 +13,7 @@ import Review from "./routes/Review";
 // import components
 import Navbar from "./components/Navbar";
 import RequireAuth from "./components/RequireAuth";
+import LayoutContainerForm from "./components/LayoutContainerForm";
 
 // page index
 const App = () => {
@@ -27,11 +28,18 @@ const App = () => {
     <>
 
       <Navbar />
-      <h1>APP</h1>
+
 
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+
+        <Route path="/" element={<LayoutContainerForm />}>
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+
+        </Route>
+
+
+
         <Route path="/" element={<Home />} />
         <Route path="/review" element={
           <RequireAuth>
