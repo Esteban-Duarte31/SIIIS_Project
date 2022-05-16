@@ -1,11 +1,9 @@
-import { Fragment } from 'react'
-import { Popover, Transition } from '@headlessui/react'
-import { MenuIcon, XIcon } from '@heroicons/react/outline'
-
 
 const Review = () => {
     return (
+
         <div className="relative bg-white overflow-hidden">
+
             <div className="max-w-7xl mx-auto">
                 <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
                     <svg
@@ -18,13 +16,11 @@ const Review = () => {
                         <polygon points="50,0 100,0 50,100 0,100" />
                     </svg>
 
-                    <Popover>
-                        <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
+                    <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
 
-                        </div>
+                    </div>
 
 
-                    </Popover>
                     {/* login */}
                     <div className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
 

@@ -1,16 +1,7 @@
 import { Outlet } from "react-router-dom"
 
-import { Fragment } from 'react'
-import { Popover, Transition } from '@headlessui/react'
-import { MenuIcon, XIcon } from '@heroicons/react/outline'
-
-
 const LayoutContainerForm = () => {
     return (
-
-
-
-
 
         <div className="relative bg-white overflow-hidden">
             <div className="max-w-7xl mx-auto">
@@ -25,16 +16,11 @@ const LayoutContainerForm = () => {
                         <polygon points="50,0 100,0 50,100 0,100" />
                     </svg>
 
-                    <Popover>
-                        <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
+                    <div className="relative pt-6 px-4 sm:px-6 lg:px-8"></div>
 
-                        </div>
-
-
-                    </Popover>
                     {/* login or register*/}
                     <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-                    
+
                         <Outlet />
                     </div>
 
