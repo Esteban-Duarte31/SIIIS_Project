@@ -32,9 +32,10 @@ const App = () => {
 
       <Routes>
 
-        <Route path="/" element={<LayoutContainerForm />}>
+        <Route element={<LayoutContainerForm />}>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+
 
         </Route>
 
