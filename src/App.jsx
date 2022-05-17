@@ -9,15 +9,15 @@ import Register from "./routes/Register";
 import Home from "./routes/Home";
 import NotFound from "./routes/NotFound";
 import Review from "./routes/Review";
-
+import 'flowbite';
 // import components
 import Navbar from "./components/Navbar";
 import RequireAuth from "./components/RequireAuth";
 import LayoutContainerForm from "./components/LayoutContainerForm";
+import Profile from "./routes/Profile";
 
 // page index
 const App = () => {
-
   const { user } = useContext(UserContext);
 
   if (user === false) {
@@ -26,33 +26,36 @@ const App = () => {
 
   return (
     <>
-
       <Navbar />
 
-
       <Routes>
-
         <Route element={<LayoutContainerForm />}>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-
-
         </Route>
 
-
-
         <Route path="/" element={<Home />} />
-        <Route path="/review" element={
-          <RequireAuth>
-            <Review />
-          </RequireAuth>
-        } />
+        <Route
+          path="/review"
+          element={
+            <RequireAuth>
+              <Review />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <RequireAuth>
+              <Profile/>
+            </RequireAuth>
+          }
+        />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
-
   );
 };
 
-export default App
+export default App;
