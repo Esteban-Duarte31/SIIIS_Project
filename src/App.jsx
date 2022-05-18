@@ -9,12 +9,14 @@ import Register from "./routes/Register";
 import Home from "./routes/Home";
 import NotFound from "./routes/NotFound";
 import Review from "./routes/Review";
-import 'flowbite';
+import Profile from "./routes/Profile";
+import Users from "./routes/Users";
+
 // import components
+import 'flowbite';
 import Navbar from "./components/Navbar";
 import RequireAuth from "./components/RequireAuth";
 import LayoutContainerForm from "./components/LayoutContainerForm";
-import Profile from "./routes/Profile";
 
 // page index
 const App = () => {
@@ -48,6 +50,14 @@ const App = () => {
           element={
             <RequireAuth>
               <Profile/>
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/users"
+          element={
+            <RequireAuth>
+              <Users/>
             </RequireAuth>
           }
         />

@@ -23,8 +23,14 @@ const Profile = () => {
 		setError,
 	} = useForm();
 
-	// const {error, setError}=useState();
-	const { data, loading, error, getData, addData } = useFirestore();
+	
+	const { 
+        data, 
+        loading, 
+        error, 
+        getData, 
+        addData 
+    } = useFirestore();
     
     useEffect(() => {
         console.log('getdata');
@@ -55,10 +61,7 @@ const Profile = () => {
 			<FormErrors error={errors.errorIntern} />
 
 			{data.map((item) => (
-				// <div key={item.userUID}>
-				// 	<h1>{item.name}</h1>
-				// 	<p>{item.lastName}</p>
-				// </div>
+				
 			
 			<div key={item.userUID} className="p-6 m-12 max-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
 				<form onSubmit={handleSubmit(onSubmit)}>
