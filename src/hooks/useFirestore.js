@@ -12,16 +12,27 @@ export const useFirestore = () => {
 			setLoading((prev) => ({ ...prev, getData: true }));
 
 			const dataRef = collection(db, "users");
-			const filterQuery = query(
-				dataRef,
-				where("userUID", "==", auth.currentUser.uid)
-			);
-			const querySnapshot = await getDocs(filterQuery);
-			const dataDb = querySnapshot.docs.map((doc) => ({
-				id: doc.id,
-				...doc.data(),
-			}));
-			setData(dataDb);
+			if (auth.currentUser) {
+				const filterQuery = query(
+					dataRef,
+					where("userUID", "==", auth.currentUser.uid)
+				);
+				const querySnapshot = await getDocs(filterQuery);
+				const dataDb = querySnapshot.docs.map((doc) => ({
+					id: doc.id,
+					...doc.data(),
+				}));
+				setData(dataDb);
+				
+			} else {
+				const querySnapshot = await getDocs(dataRef);
+				const dataDb = querySnapshot.docs.map((doc) => ({
+					id: doc.id,
+					...doc.data(),
+				}));
+				setData(dataDb);
+			}
+
 		} catch (error) {
 			console.log(error);
 			setError(error.message);
@@ -73,19 +84,19 @@ export const useFirestore = () => {
 		}
 	};
 
-    const deleteData = async (idUser) => {
-        try {
+	const deleteData = async (idUser) => {
+		try {
 			setLoading((prev) => ({ ...prev, [idUser]: true }));
-			const docRef=doc(db, "users", idUser);
-            await deleteDoc(docRef);
-            setData(data.filter((item) => item.id !== idUser));
+			const docRef = doc(db, "users", idUser);
+			await deleteDoc(docRef);
+			setData(data.filter((item) => item.id !== idUser));
 		} catch (error) {
 			console.log(error);
 			setError(error.message);
 		} finally {
 			setLoading((prev) => ({ ...prev, [idUser]: false }));
 		}
-    }
+	}
 
 	return { data, error, loading, getData, addData, getDataUsers, deleteData };
 };
