@@ -167,7 +167,7 @@ const Navbar = () => {
 																		</NavLink>
 																	)}
 																</Menu.Item>
-															) }
+															)}
 														</div>
 													))}
 

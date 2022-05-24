@@ -72,9 +72,9 @@ const Users = () => {
 					<div className="flex space-x-4 mb-6 text-sm font-medium">
 						<div className="flex-auto flex space-x-4">
 							<button
-								onClick={() => handleClickDelete(item.id)}
 								className="h-10 px-6 font-semibold rounded-md bg-black text-white"
-								type="submit"
+								type="button"
+								onClick={() => handleClickDelete(item.id)}
 							>
 								Delete
 							</button>
