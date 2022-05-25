@@ -71,14 +71,15 @@ export const useFirestore = () => {
 	};
 
 	const addData = async (dataUser) => {
+		console.log("datauser",dataUser);
 		try {
 			setLoading((prev) => ({ ...prev, addData: true }));
 			const newDoc = {
 				name: dataUser.names,
 				lastName: dataUser.lastNames,
-				email: dataUser.email,
+				email: auth.currentUser.email,
 				phone: dataUser.phone,
-				role: dataUser.role,
+				role: "user",
 				userUID: auth.currentUser.uid,
 			};
 

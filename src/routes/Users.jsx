@@ -21,16 +21,16 @@ const Users = () => {
 	}, []);
 
 	// useState hook
-	const onSubmit = async (data) => {
-		console.log("actualizando perfil...");
-		try {
-			await addData(data);
-		} catch (error) {
-			console.log(error.code);
-			const { code, message } = ErrorsFirebase(error.code);
-			setError(code, { message });
-		}
-	};
+	// const onSubmit = async (data) => {
+	// 	console.log("actualizando perfil...");
+	// 	try {
+	// 		await addData(data);
+	// 	} catch (error) {
+	// 		console.log(error.code);
+	// 		const { code, message } = ErrorsFirebase(error.code);
+	// 		setError(code, { message });
+	// 	}
+	// };
 
 	const handleClickDelete = async (id) => {
 		console.log("eliminando usuario... id: ", id);

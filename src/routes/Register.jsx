@@ -9,12 +9,14 @@ import { FormValidate } from "../utils/FormValidate";
 // import components
 import FormErrors from "../components/FormErrors";
 import FormInput from "../components/FormInput";
+import { useFirestore } from "../hooks/useFirestore";
 
 // page register
 const Register = () => {
 	const navegate = useNavigate();
 	const { registerUser } = useContext(UserContext);
-
+	const { data, loading, error, getData, addData, getDataUsers, deleteData } =
+	useFirestore();
 	// validate form with react-hook-form
 	const {
 		required,
@@ -39,12 +41,12 @@ const Register = () => {
 		try {
 			await registerUser(data.email, data.password);
 			await addData({
-				names: "Nombres",
-				lastNames: "apellidos",
-				phone: "3987654321",
+				names: "",
+				lastNames: "",
+				phone: "",
 				email: data.email,
-				role: "user",
 			});
+
 			console.log("registrado");
 			navegate("/profile");
 		} catch (error) {
