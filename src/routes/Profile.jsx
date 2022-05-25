@@ -23,7 +23,8 @@ const Profile = () => {
 		setError,
 	} = useForm();
 
-	const { data, loading, error, getData, addData } = useFirestore();
+	const { data, loading, error, getData, addData, updateData } =
+		useFirestore();
 
 	useEffect(() => {
 		console.log("getdata profile");
@@ -36,9 +37,9 @@ const Profile = () => {
 
 	// useState hook
 	const onSubmit = async (data) => {
-		console.log("actualizando perfil...");
+		console.log("actualizando perfil...", data);
 		try {
-			await addData(data);
+			await updateData(data);
 		} catch (error) {
 			console.log(error.code);
 			const { code, message } = ErrorsFirebase(error.code);
@@ -53,10 +54,29 @@ const Profile = () => {
 			{data.map((item) => (
 				<div
 					key={item.userUID}
-					className="p-6 m-12 max-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
+					className="p-6 w-9/12 ml-auto mr-auto mt-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
 				>
-					
+					{console.log(item)}
 					<form onSubmit={handleSubmit(onSubmit)}>
+						<div className="grid gap-6 mb-6 lg:grid-cols-4">
+							<input
+								name="id"
+								className="col-span-2  text-lg font-semibold text-slate-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+								defaultValue={item.id}
+								placeholder={item.id}
+								readOnly
+								{...register("id")}
+							/>
+							<input
+								name="Role"
+								className=" col-end-5  text-lg font-semibold text-slate-500 text-right rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+								defaultValue={item.role}
+								placeholder={item.role}
+								readOnly
+								{...register("role")}
+							/>
+						</div>
+
 						<div className="grid gap-6 mb-6 lg:grid-cols-2">
 							<FormInputProfile
 								type="text"
@@ -159,9 +179,12 @@ const Profile = () => {
 							<input
 								type="email"
 								id="email"
+								name="email"
 								className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 								placeholder={item.email}
-								required=""
+								defaultValue={item.email}
+								readOnly
+								{...register("email")}
 							/>
 						</div>
 						<div className="mb-6">
@@ -197,9 +220,9 @@ const Profile = () => {
 
 						<button
 							type="submit"
-							className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+							className=" group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
 						>
-							Submit
+							Actualizar Información
 						</button>
 					</form>
 				</div>

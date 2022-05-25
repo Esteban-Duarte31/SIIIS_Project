@@ -1,4 +1,13 @@
-import { addDoc, collection, deleteDoc, doc, getDocs, query, where } from "firebase/firestore";
+import {
+	addDoc,
+	collection,
+	deleteDoc,
+	doc,
+	getDocs,
+	query,
+	updateDoc,
+	where,
+} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { auth, db } from "../Firebase";
 
@@ -23,7 +32,6 @@ export const useFirestore = () => {
 					...doc.data(),
 				}));
 				setData(dataDb);
-				
 			} else {
 				const querySnapshot = await getDocs(dataRef);
 				const dataDb = querySnapshot.docs.map((doc) => ({
@@ -32,7 +40,6 @@ export const useFirestore = () => {
 				}));
 				setData(dataDb);
 			}
-
 		} catch (error) {
 			console.log(error);
 			setError(error.message);
@@ -67,8 +74,11 @@ export const useFirestore = () => {
 		try {
 			setLoading((prev) => ({ ...prev, addData: true }));
 			const newDoc = {
-				names: dataUser.names,
+				name: dataUser.names,
 				lastName: dataUser.lastNames,
+				email: dataUser.email,
+				phone: dataUser.phone,
+				role: dataUser.role,
 				userUID: auth.currentUser.uid,
 			};
 
@@ -84,6 +94,29 @@ export const useFirestore = () => {
 		}
 	};
 
+	const updateData = async (dataUser) => {
+		try {
+			console.log(dataUser);
+			setLoading((prev) => ({ ...prev, updateData: true }));
+			const dataRef = doc(db, "users", dataUser.id);
+			const newData = {
+				name: dataUser.names,
+				lastName: dataUser.lastNames,
+				phone: dataUser.phone,
+				userUID: auth.currentUser.uid,
+			};
+			await updateDoc(dataRef, newData);
+			// setData((prev) =>
+			// 	prev.map((item) => (item.id === dataUser.id ? newData : item))
+			// );
+		} catch (error) {
+			console.log(error);
+			setError(error.message);
+		} finally {
+			setLoading((prev) => ({ ...prev, updateData: false }));
+		}
+	};
+
 	const deleteData = async (idUser) => {
 		try {
 			setLoading((prev) => ({ ...prev, [idUser]: true }));
@@ -96,7 +129,16 @@ export const useFirestore = () => {
 		} finally {
 			setLoading((prev) => ({ ...prev, [idUser]: false }));
 		}
-	}
+	};
 
-	return { data, error, loading, getData, addData, getDataUsers, deleteData };
+	return {
+		data,
+		error,
+		loading,
+		getData,
+		addData,
+		getDataUsers,
+		deleteData,
+		updateData,
+	};
 };
