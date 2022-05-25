@@ -17,6 +17,7 @@ import 'flowbite';
 import Navbar from "./components/Navbar";
 import RequireAuth from "./components/RequireAuth";
 import LayoutContainerForm from "./components/LayoutContainerForm";
+import RequireAuthAdmin from "./components/RequireAuthAdmin";
 
 // page index
 const App = () => {
@@ -56,9 +57,9 @@ const App = () => {
         <Route
           path="/users"
           element={
-            <RequireAuth>
+            <RequireAuthAdmin>
               <Users/>
-            </RequireAuth>
+            </RequireAuthAdmin>
           }
         />
 

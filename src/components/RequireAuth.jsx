@@ -6,7 +6,7 @@ import { UserContext } from "../context/UserProvider";
 
 const RequireAuth = ({ children }) => {
     const { user } = useContext(UserContext);
-
+    console.log("Autenticando...");
     if (!user) {
         return <Navigate to="/login" />
     }
