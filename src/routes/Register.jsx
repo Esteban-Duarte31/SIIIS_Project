@@ -16,7 +16,7 @@ const Register = () => {
 	const navegate = useNavigate();
 	const { registerUser } = useContext(UserContext);
 	const { data, loading, error, getData, addData, getDataUsers, deleteData } =
-	useFirestore();
+		useFirestore();
 	// validate form with react-hook-form
 	const {
 		required,

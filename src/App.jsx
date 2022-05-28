@@ -13,7 +13,7 @@ import Profile from "./routes/Profile";
 import Users from "./routes/Users";
 
 // import components
-import 'flowbite';
+import "flowbite";
 import Navbar from "./components/Navbar";
 import RequireAuth from "./components/RequireAuth";
 import LayoutContainerForm from "./components/LayoutContainerForm";
@@ -21,52 +21,54 @@ import RequireAuthAdmin from "./components/RequireAuthAdmin";
 
 // page index
 const App = () => {
-  const { user } = useContext(UserContext);
+	const { user } = useContext(UserContext);
 
-  if (user === false) {
-    return <p> Cargando...</p>;
-  }
+	if (user === false) {
+		return <p> Cargando...</p>;
+	}
 
-  return (
-    <>
-      <Navbar />
+	return (
+		<>
+			<Navbar />
 
-      <Routes>
-        <Route element={<LayoutContainerForm />}>
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-        </Route>
+			<Routes>
+				<Route element={<LayoutContainerForm />}>
+					<Route path="/register" element={<Register />} />
+					<Route path="/login" element={<Login />} />
+				</Route>
 
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/review"
-          element={
-            <RequireAuth>
-              <Review />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <RequireAuth>
-              <Profile/>
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="/users"
-          element={
-            <RequireAuthAdmin>
-              <Users/>
-            </RequireAuthAdmin>
-          }
-        />
+				<Route path="/" element={<Home />} />
+				<Route
+					path="/review"
+					element={
+						<RequireAuth>
+							<Review />
+						</RequireAuth>
+					}
+				/>
+				<Route
+					path="/profile"
+					element={
+						<RequireAuth>
+							<Profile />
+						</RequireAuth>
+					}
+				/>
+				<Route
+					path="/users"
+					element={
+						<RequireAuth>
+							<RequireAuthAdmin>
+								<Users />
+							</RequireAuthAdmin>
+						</RequireAuth>
+					}
+				/>
 
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </>
-  );
+				<Route path="*" element={<NotFound />} />
+			</Routes>
+		</>
+	);
 };
 
 export default App;

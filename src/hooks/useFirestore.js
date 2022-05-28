@@ -8,14 +8,16 @@ import {
 	updateDoc,
 	where,
 } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { auth, db } from "../Firebase";
 
+// Hook
 export const useFirestore = () => {
 	const [data, setData] = useState([]);
 	const [error, setError] = useState();
 	const [loading, setLoading] = useState({});
 
+	// get data from firestore with query
 	const getData = async () => {
 		try {
 			setLoading((prev) => ({ ...prev, getData: true }));
@@ -47,6 +49,8 @@ export const useFirestore = () => {
 			setLoading((prev) => ({ ...prev, getData: false }));
 		}
 	};
+
+	// get data all users from firestore
 	const getDataUsers = async () => {
 		try {
 			setLoading((prev) => ({ ...prev, getDataUsers: true }));
@@ -70,8 +74,9 @@ export const useFirestore = () => {
 		}
 	};
 
+	//  add data to firestore
 	const addData = async (dataUser) => {
-		console.log("datauser",dataUser);
+		console.log("datauser", dataUser);
 		try {
 			setLoading((prev) => ({ ...prev, addData: true }));
 			const newDoc = {
@@ -95,6 +100,7 @@ export const useFirestore = () => {
 		}
 	};
 
+	// update data to firestore
 	const updateData = async (dataUser) => {
 		try {
 			console.log(dataUser);
@@ -107,9 +113,10 @@ export const useFirestore = () => {
 				userUID: auth.currentUser.uid,
 			};
 			await updateDoc(dataRef, newData);
-			// setData((prev) =>
-			// 	prev.map((item) => (item.id === dataUser.id ? newData : item))
-			// );
+			
+			setData((prev) =>
+				prev.map((item) => (item.id === dataUser.id ? newData : item))
+			);
 		} catch (error) {
 			console.log(error);
 			setError(error.message);
@@ -118,6 +125,7 @@ export const useFirestore = () => {
 		}
 	};
 
+	// delete data to firestore
 	const deleteData = async (idUser) => {
 		try {
 			setLoading((prev) => ({ ...prev, [idUser]: true }));
@@ -132,6 +140,7 @@ export const useFirestore = () => {
 		}
 	};
 
+	// return data
 	return {
 		data,
 		error,
