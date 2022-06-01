@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useFirestore } from "../hooks/useFirestore";
 import { ErrorsFirebase } from "../utils/ErrorsFirebase";
 import { getAuth, deleteUser } from "firebase/auth";
+import { UserContext } from "../context/UserProvider";
 
 const Users = () => {
+
 	const {
 		data,
 		loading,
@@ -46,7 +48,7 @@ const Users = () => {
 	};
 
 	const handleClickDelete = async (id, userUID) => {
-		console.log("eliminando usuario... id: ", id);
+		console.log("eliminando usuario... id: ", id," - ", userUID);
 		try {
 			await deleteData(id);
 		} catch (error) {
