@@ -47,6 +47,7 @@ const Users = () => {
 		}
 	};
 
+	// delete user account whit data
 	const handleClickDelete = async (id, userUID) => {
 		console.log("eliminando usuario... id: ", id," - ", userUID);
 		try {
