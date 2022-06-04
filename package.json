@@ -13,6 +13,7 @@
     "firebase": "9.8.2",
     "firebase-admin": "10.2.0",
     "flowbite": "1.4.7",
+    "flowbite-react": "0.0.25",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-hook-form": "7.31.3",
