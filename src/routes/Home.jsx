@@ -58,7 +58,7 @@ const Home = () => {
         <div className="container px-5 py-12 mx-auto" style={{ cursor: "auto" }}>
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <video className="lg:w-1/2 w-full lg:h-auto border" controls>
-              <source src="https://firebasestorage.googleapis.com/v0/b/siiis-a2398.appspot.com/o/videos%2FWhatsApp%20Video%202019-05-23%20at%2012.10.07%20PM.mp4?alt=media&token=1448ca31-82db-43b5-ba04-df2b3a25ac67" type="video/mp4" />
+              <source src="https://firebasestorage.googleapis.com/v0/b/siiis-a2398.appspot.com/o/videos%2Fvideo_home.mp4?alt=media&token=d4728384-b3cd-46fd-9b46-bc0f009bb91e" type="video/mp4" />
             </video>
             <div
               className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0"
