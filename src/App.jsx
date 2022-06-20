@@ -15,6 +15,7 @@ import Users from "./routes/Users";
 // import components
 import "flowbite";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import RequireAuth from "./components/RequireAuth";
 import LayoutContainerForm from "./components/LayoutContainerForm";
 import RequireAuthAdmin from "./components/RequireAuthAdmin";
@@ -67,6 +68,8 @@ const App = () => {
 
 				<Route path="*" element={<NotFound />} />
 			</Routes>
+
+			<Footer />
 		</>
 	);
 };
