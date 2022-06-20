@@ -1,4 +1,8 @@
+import { useState } from "react";
+import firebaseApp from "../Firebase";
+import { getAuth } from "firebase/auth";
 import {
+	getFirestore, 
 	addDoc,
 	collection,
 	deleteDoc,
@@ -6,10 +10,10 @@ import {
 	getDocs,
 	query,
 	updateDoc,
-	where,
+	where
 } from "firebase/firestore";
-import { useState } from "react";
-import { auth, db } from "../Firebase";
+const auth = getAuth(firebaseApp);
+const db = getFirestore(firebaseApp);
 
 // Hook
 export const useFirestore = () => {
@@ -113,7 +117,7 @@ export const useFirestore = () => {
 				userUID: auth.currentUser.uid,
 			};
 			await updateDoc(dataRef, newData);
-			
+
 			setData((prev) =>
 				prev.map((item) => (item.id === dataUser.id ? newData : item))
 			);
