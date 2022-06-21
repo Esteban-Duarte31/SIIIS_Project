@@ -9,7 +9,6 @@ const FormInputProfile = forwardRef(
 			onBlur,
 			name,
 			label,
-			htmlFor,
 			error,
 			children,
 		},

@@ -80,7 +80,6 @@ export const useFirestore = () => {
 
   //  add data to firestore
   const addData = async (dataUser) => {
-    console.log("datauser", dataUser);
     try {
       setLoading((prev) => ({ ...prev, addData: true }));
       const newDoc = {
@@ -107,7 +106,6 @@ export const useFirestore = () => {
   // update data to firestore
   const updateData = async (dataUser) => {
     try {
-      console.log(dataUser);
       setLoading((prev) => ({ ...prev, updateData: true }));
       const dataRef = doc(db, "users", dataUser.id);
       const newData = {
@@ -131,7 +129,6 @@ export const useFirestore = () => {
   // update Role to firestore
   const updateRole = async (dataUser) => {
     try {
-      console.log(dataUser);
       setLoading((prev) => ({ ...prev, updateData: true }));
       const dataRef = doc(db, "users", dataUser.id);
       const newData = {

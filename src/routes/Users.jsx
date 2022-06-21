@@ -6,40 +6,26 @@ import { ErrorsFirebase } from "../utils/ErrorsFirebase";
 import SelectRole from "../components/SelectRole";
 
 const Users = () => {
-  const { data, loading, error, getData, addData, getDataUsers, deleteData } =
+  const { data, loading, getDataUsers, deleteData } =
     useFirestore();
 
   const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    getValues,
     setError,
   } = useForm();
 
   useEffect(() => {
-    console.log("getdataUsers");
     getDataUsers();
   }, []);
 
-  if (loading.getDataUsers) {
-    return <div>Cargando...</div>;
+  // if (loading.getDataUsers) {
+  if (loading.getDataUsers || loading.getDataUsers === undefined) {
+
+    return <div
+      className="text-center text-gray-500 text-xl font-bold h-screen"
+    >Cargando...</div>;
   }
 
-  // useState hook
-  const onSubmit = async (data) => {
-    console.log("actualizando perfil...");
-    try {
-      await addData(data);
-    } catch (error) {
-      console.log(error.code);
-      const { code, message } = ErrorsFirebase(error.code);
-      setError(code, { message });
-    }
-  };
-
-  const handleClickDelete = async (id, userUID) => {
-    console.log("eliminando usuario... id: ", id, " - ", userUID);
+  const handleClickDelete = async (id) => {
     try {
       await deleteData(id);
     } catch (error) {

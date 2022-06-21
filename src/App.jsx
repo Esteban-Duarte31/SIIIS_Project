@@ -25,7 +25,9 @@ const App = () => {
 	const { user } = useContext(UserContext);
 
 	if (user === false) {
-		return <p> Cargando...</p>;
+		return <div
+			className="text-center text-gray-500 text-xl font-bold h-screen"
+		>Cargando...</div>;
 	}
 
 	return (

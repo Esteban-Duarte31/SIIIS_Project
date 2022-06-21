@@ -15,8 +15,7 @@ import { useFirestore } from "../hooks/useFirestore";
 const Register = () => {
 	const navegate = useNavigate();
 	const { registerUser } = useContext(UserContext);
-	const { data, loading, error, getData, addData, getDataUsers, deleteData } =
-		useFirestore();
+	const {addData } = useFirestore();
 	// validate form with react-hook-form
 	const {
 		required,
@@ -37,7 +36,6 @@ const Register = () => {
 
 	// useState hook
 	const onSubmit = async (data) => {
-		console.log("registrando...");
 		try {
 			await registerUser(data.email, data.password);
 			await addData({
@@ -46,8 +44,6 @@ const Register = () => {
 				phone: "",
 				email: data.email,
 			});
-
-			console.log("registrado");
 			navegate("/profile");
 		} catch (error) {
 			console.log(error.code);

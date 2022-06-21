@@ -16,7 +16,7 @@ const Login = () => {
   const navegate = useNavigate();
 
   // validate form with react-hook-form
-  const { required, patternEmail, patternPassword, validateEmptyField } =
+  const { required, patternEmail, validateEmptyField } =
     FormValidate();
 
   // useForm hook
@@ -24,20 +24,16 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-    getValues,
     setError,
   } = useForm();
 
   // useState hook
   const onSubmit = async (data) => {
-    console.log("Iniciando sesión...");
     try {
       await loginUser(data.email, data.password);
-      console.log("sesión iniciada");
       navegate("/");
       window.location.reload();
     } catch (error) {
-      console.log(error.code);
       const { code, message } = ErrorsFirebase(error.code);
       setError(code, { message });
     }

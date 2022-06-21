@@ -11,7 +11,6 @@ const UserProvider = (props) => {
   // method to logout user
   useEffect(() => {
     const unsuscribe = onAuthStateChanged(auth, (user) => {
-      console.log("user", user);
       if (user) {
         const { email, metadata, phoneNumber, photoURL, displayName, uid } =
           user;

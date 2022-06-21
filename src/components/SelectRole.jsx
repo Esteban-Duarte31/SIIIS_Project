@@ -1,7 +1,6 @@
 import { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
-import { async } from "@firebase/util";
 import { useFirestore } from "../hooks/useFirestore";
 
 const people = [
@@ -42,8 +41,6 @@ const SelectRole = ({ idUser, role }) => {
       setError(code, { message });
     }
   };
-
-  // console.log("selected: ", selected);
 
   return (
     <Listbox value={selected} onChange={handleChange}>

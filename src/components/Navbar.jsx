@@ -19,10 +19,9 @@ function classNames(...classes) {
 
 const Navbar = () => {
 	const { user, logoutUser } = useContext(UserContext);
-	const { data, loading, error, getData, addData } = useFirestore();
+	const { data, getData } = useFirestore();
 
 	useEffect(() => {
-		console.log("getdata");
 		getData();
 	}, []);
 	// method to logout user
