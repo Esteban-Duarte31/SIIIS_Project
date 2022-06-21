@@ -108,16 +108,10 @@ export const useFirestore = () => {
     try {
       setLoading((prev) => ({ ...prev, updateData: true }));
       const dataRef = doc(db, "users", dataUser.id);
-      const newData = {
-        name: dataUser.names,
-        lastName: dataUser.lastNames,
-        phone: dataUser.phone,
-        userUID: auth.currentUser.uid,
-      };
-      await updateDoc(dataRef, newData);
+      await updateDoc(dataRef, dataUser);
 
       setData((prev) =>
-        prev.map((item) => (item.id === dataUser.id ? newData : item))
+        prev.map((item) => (item.id === dataUser.id ? dataUser : item))
       );
     } catch (error) {
       console.log(error);

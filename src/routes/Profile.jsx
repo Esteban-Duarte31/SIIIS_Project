@@ -9,6 +9,10 @@ import { useContext, useEffect, Fragment, useRef, useState } from "react";
 import { UserContext } from "../context/UserProvider";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationIcon } from "@heroicons/react/outline";
+import firebaseApp from "../Firebase";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"
+
+const storage = getStorage(firebaseApp);
 
 const Profile = () => {
   const [open, setOpen] = useState(false);
@@ -40,11 +44,19 @@ const Profile = () => {
     return <div
       className="text-center text-gray-500 text-xl font-bold h-screen"
     >Cargando...</div>;
+  }else{
+    // console.log(data);
   }
   // useState hook
-  const onSubmit = async (data) => {
+  const onSubmit = async (dataUp) => {
+    // console.log(dataUp);
+    const dataNew = {
+      ...data[0],
+      ...dataUp,
+    }
+    // console.log(dataNew);
     try {
-      await updateData(data);
+      await updateData(dataNew);
     } catch (error) {
       console.log(error.code);
       const { code, message } = ErrorsFirebase(error.code);
@@ -63,50 +75,82 @@ const Profile = () => {
     }
   };
 
+
+  const fileHandler = async (e) => {
+    const file = e.target.files[0];
+    const storageRef = ref(storage, `profile_images/${file.name}`);
+    await uploadBytes(storageRef, file);
+    const url = await getDownloadURL(storageRef);
+    const img = document.getElementById("image-profile");
+    img.src = url;
+    const dataNew = {
+      ...data[0],
+      profileImage: url,
+    }
+    onSubmit(dataNew);
+  }
+
+
   return (
     <>
       <FormErrors error={errors.errorIntern} />
 
       <div
-        key={data[0].userUID}
-        className="p-6 w-9/12 ml-auto mr-auto mt-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
+        className="p-6 w-9/12 ml-auto mr-auto my-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
       >
+        <div className="grid gap-6 mb-3 lg:grid-cols-4">
+
+          <label
+            className=" col-end-5  text-lg font-semibold text-slate-500 text-right rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          >Rol: {data[0].role === "admin" ? "Administrador" : "Usuario"} </label>
+        </div>
+        <div className={'flex justify-center items-center my-0 mx-auto'}>
+          <figure className={'relative w-40 h-40 rounded-full border-2 border-solid border-gray-300 z-0 hover:opacity-100 hover:visible'}>
+            <label htmlFor="file-input" className={'cursor-pointer'}>
+              <img
+                id={'image-profile'}
+                className={'w-full h-full rounded-full transition-all duration-300 ease-out'}
+                src={data[0].profileImage} alt={'profile'} />
+              <div className={'absolute top-0 left-0 w-full h-full bg-slate-300 flex flex-col justify-end opacity-0 invisible text-center rounded-full text-xl text-white transition-all duration-300 ease-out'}>
+                <span>Subir foto</span>
+                <i className="fas fa-camera mb-2.5"></i>
+              </div>
+            </label>
+
+            <input className={'hidden'} id="file-input" name="image" type="file" onChange={fileHandler}/>
+          </figure>
+
+        </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="grid gap-6 mb-6 lg:grid-cols-4">
 
-            <label
-              className=" col-end-5  text-lg font-semibold text-slate-500 text-right rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            >Rol: {data[0].role === "admin" ? "Administrador" : "Usuario"} </label>
-          </div>
-
-          <div className="grid gap-6 mb-6 lg:grid-cols-2">
+          <div className="grid gap-6 my-6 lg:grid-cols-2">
             <FormInputProfile
               type="text"
               placeholder={data[0].name}
               label="Nombres"
-              htmlFor="names"
-              name="names"
-              error={errors.names}
-              {...register("names", {
+              htmlFor="name"
+              name="name"
+              error={errors.name}
+              {...register("name", {
                 required,
               })}
             >
-              <FormErrors error={errors.names} />
+              <FormErrors error={errors.name} />
             </FormInputProfile>
 
             <FormInputProfile
               type="text"
               placeholder={data[0].lastName}
               label="Apellidos"
-              htmlFor="lastNames"
-              name="lastNames"
-              error={errors.lastNames}
-              {...register("lastNames", {
+              htmlFor="lastName"
+              name="lastName"
+              error={errors.lastName}
+              {...register("lastName", {
                 required,
               })}
             >
-              <FormErrors error={errors.names} />
+              <FormErrors error={errors.name} />
             </FormInputProfile>
 
             <div className="flex flex-wrap">
