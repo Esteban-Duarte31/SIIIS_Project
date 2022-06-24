@@ -27,7 +27,7 @@ const App = () => {
 	if (user === false) {
 		return <div
 			className="text-center text-gray-500 text-xl font-bold h-screen"
-		>Cargando...</div>;
+		>Cargando...</div>
 	}
 
 	return (

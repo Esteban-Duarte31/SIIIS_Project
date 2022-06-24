@@ -16,8 +16,7 @@ const Login = () => {
   const navegate = useNavigate();
 
   // validate form with react-hook-form
-  const { required, patternEmail, validateEmptyField } =
-    FormValidate();
+  const { required, patternEmail, validateEmptyField } = FormValidate();
 
   // useForm hook
   const {
@@ -47,20 +46,20 @@ const Login = () => {
       <div className="max-w-md w-full space-y-8">
         <div>
           <img
-            className="mx-auto h-12 w-auto"
-            src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+            className="mx-auto h-28 w-auto"
+            src="https://firebasestorage.googleapis.com/v0/b/siiis-a2398.appspot.com/o/image_resource%2Flogo_black.png?alt=media&token=865e49f6-bc1f-46ec-8e4e-923f503f0e96"
             alt="Workflow"
           />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             Inicia sesión
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            Or{" "}
+            O{" "}
             <a
-              href="#"
+              href="/Register"
               className="font-medium text-indigo-600 hover:text-indigo-500"
             >
-              start your 14-day free trial
+              Registarte
             </a>
           </p>
         </div>

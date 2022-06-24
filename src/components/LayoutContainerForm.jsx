@@ -16,7 +16,7 @@ const LayoutContainerForm = () => {
                         <polygon points="50,0 100,0 50,100 0,100" />
                     </svg>
 
-                    <div className="relative pt-6 px-4 sm:px-6 lg:px-8"></div>
+                    <div className="relative pt-16 px-4 sm:px-6 lg:px-8"></div>
 
                     {/* login or register*/}
                     <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
