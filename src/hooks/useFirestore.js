@@ -83,12 +83,13 @@ export const useFirestore = () => {
     try {
       setLoading((prev) => ({ ...prev, addData: true }));
       const newDoc = {
-        name: dataUser.names,
-        lastName: dataUser.lastNames,
+        name: dataUser.name,
+        lastName: dataUser.lastName,
         email: auth.currentUser.email,
         phone: dataUser.phone,
         role: "user",
         userUID: auth.currentUser.uid,
+        profileImage: dataUser.profileImage,
       };
 
       const dataRef = collection(db, "users");
