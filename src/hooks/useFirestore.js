@@ -53,6 +53,31 @@ export const useFirestore = () => {
       setLoading((prev) => ({ ...prev, getData: false }));
     }
   };
+  // get data user whit id from firestore with query
+  const getDataUserId = async (userUID) => {
+    try {
+      setLoading((prev) => ({ ...prev, getDataUserId: true }));
+
+      const dataRef = collection(db, "users");
+     
+        const filterQuery = query(
+          dataRef,
+          where("userUID", "==",  userUID)
+        );
+        const querySnapshot = await getDocs(filterQuery);
+        const dataDb = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setData(dataDb);
+     
+    } catch (error) {
+      console.log(error);
+      setError(error.message);
+    } finally {
+      setLoading((prev) => ({ ...prev, getDataUserId: false }));
+    }
+  };
 
   // get data all users from firestore
   const getDataUsers = async () => {
@@ -163,6 +188,7 @@ export const useFirestore = () => {
     error,
     loading,
     getData,
+    getDataUserId,
     addData,
     getDataUsers,
     deleteData,

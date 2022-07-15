@@ -10,7 +10,7 @@ import { UserContext } from "../context/UserProvider";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationIcon } from "@heroicons/react/outline";
 import firebaseApp from "../Firebase";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const storage = getStorage(firebaseApp);
 
@@ -32,28 +32,27 @@ const Profile = () => {
     setError,
   } = useForm();
 
-  const { data, loading, getData, updateData, deleteData } =
-    useFirestore();
-
+  const { data, loading, getData, updateData, deleteData } = useFirestore();
 
   useEffect(() => {
     getData();
   }, []);
 
   if (loading.getData || loading.getData === undefined) {
-    return <div
-      className="text-center text-gray-500 text-xl font-bold h-screen"
-    >Cargando...</div>;
-  }else{
-    // console.log(data);
-  }
+    return (
+      <div className="text-center text-gray-500 text-xl font-bold h-screen">
+        Cargando...
+      </div>
+    );
+  } 
+
   // useState hook
   const onSubmit = async (dataUp) => {
-    // console.log(dataUp);
+    console.log("hey",data);
     const dataNew = {
       ...data[0],
       ...dataUp,
-    }
+    };
     // console.log(dataNew);
     try {
       await updateData(dataNew);
@@ -75,7 +74,6 @@ const Profile = () => {
     }
   };
 
-
   const fileHandler = async (e) => {
     const file = e.target.files[0];
     const storageRef = ref(storage, `profile_images/${file.name}`);
@@ -86,44 +84,56 @@ const Profile = () => {
     const dataNew = {
       ...data[0],
       profileImage: url,
-    }
+    };
     onSubmit(dataNew);
-  }
-
+  };
 
   return (
     <>
       <FormErrors error={errors.errorIntern} />
 
-      <div
-        className="p-6 w-9/12 ml-auto mr-auto my-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
-      >
+      <div className="p-6 my-24 w-9/12 ml-auto mr-auto bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
         <div className="grid gap-6 mb-3 lg:grid-cols-4">
-
-          <label
-            className=" col-end-5  text-lg font-semibold text-slate-500 text-right rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          >Rol: {data[0].role === "admin" ? "Administrador" : "Usuario"} </label>
+          <label className=" col-end-5  text-lg font-semibold text-slate-500 text-right rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            Rol: {data[0].role === "admin" ? "Administrador" : "Usuario"}{" "}
+          </label>
         </div>
-        <div className={'flex justify-center items-center my-0 mx-auto'}>
-          <figure className={'relative w-40 h-40 rounded-full border-2 border-solid border-gray-300 z-0 hover:opacity-100 hover:visible'}>
-            <label htmlFor="file-input" className={'cursor-pointer'}>
+        <div className={"flex justify-center items-center my-0 mx-auto"}>
+          <figure
+            className={
+              "relative w-40 h-40 rounded-full border-2 border-solid border-gray-300 z-0 hover:opacity-100 hover:visible"
+            }
+          >
+            <label htmlFor="file-input" className={"cursor-pointer"}>
               <img
-                id={'image-profile'}
-                className={'w-full h-full rounded-full transition-all duration-300 ease-out'}
-                src={data[0].profileImage} alt={'profile'} />
-              <div className={'absolute top-0 left-0 w-full h-full bg-slate-300 flex flex-col justify-end opacity-0 invisible text-center rounded-full text-xl text-white transition-all duration-300 ease-out'}>
+                id={"image-profile"}
+                className={
+                  "w-full h-full rounded-full transition-all duration-300 ease-out"
+                }
+                src={data[0].profileImage}
+                alt={"profile"}
+              />
+              <div
+                className={
+                  "absolute top-0 left-0 w-full h-full bg-slate-300 flex flex-col justify-end opacity-0 invisible text-center rounded-full text-xl text-white transition-all duration-300 ease-out"
+                }
+              >
                 <span>Subir foto</span>
                 <i className="fas fa-camera mb-2.5"></i>
               </div>
             </label>
 
-            <input className={'hidden'} id="file-input" name="image" type="file" onChange={fileHandler}/>
+            <input
+              className={"hidden"}
+              id="file-input"
+              name="image"
+              type="file"
+              onChange={fileHandler}
+            />
           </figure>
-
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-
           <div className="grid gap-6 my-6 lg:grid-cols-2">
             <FormInputProfile
               type="text"
@@ -267,7 +277,7 @@ const Profile = () => {
 
           <button
             type="submit"
-            className=" group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className=" group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-amber-400 hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500"
           >
             Actualizar Información
           </button>

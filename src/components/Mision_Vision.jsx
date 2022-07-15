@@ -1,7 +1,7 @@
 const Mision_Vision = () => {
   return (
     <>
-      <section id="inform" className="bg-white border-b">
+      <section id="inform">
         <div className="container max-w-5xl mx-auto m-8">
           <h1 className="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800" style={{"marginTop": "-3.7rem"}}>
             ___

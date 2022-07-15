@@ -91,7 +91,8 @@ const Home = () => {
                   </div>
                   <h6 className="text-xl font-semibold">Lorem ipsum</h6>
                   <p className="mt-2 mb-4 text-gray-600">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet purus ut libero feugiat tincidunt.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Duis sit amet purus ut libero feugiat tincidunt.
                   </p>
                 </div>
               </div>
@@ -104,7 +105,8 @@ const Home = () => {
                   </div>
                   <h6 className="text-xl font-semibold">Lorem ipsum</h6>
                   <p className="mt-2 mb-4 text-gray-600">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet purus ut libero feugiat tincidunt.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Duis sit amet purus ut libero feugiat tincidunt.
                   </p>
                 </div>
               </div>
@@ -117,7 +119,8 @@ const Home = () => {
                   </div>
                   <h6 className="text-xl font-semibold">Lorem ipsum</h6>
                   <p className="mt-2 mb-4 text-gray-600">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet purus ut libero feugiat tincidunt.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Duis sit amet purus ut libero feugiat tincidunt.
                   </p>
                 </div>
               </div>
@@ -129,10 +132,14 @@ const Home = () => {
                 <i className="fas fa-user-friends text-xl" />
               </div>
               <h3 className="text-3xl mb-2 font-semibold leading-normal">
-              Lorem ipsum dolor sit, amet consectetur.
+                Lorem ipsum dolor sit, amet consectetur.
               </h3>
               <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lobortis neque eget sapien rutrum scelerisque. Nunc fringilla consequat diam. Donec pharetra fermentum odio ac pellentesque. Curabitur bibendum fringilla arcu in convallis. Phasellus vestibulum lorem eget neque tempor, id consequat lacus eleifend.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                lobortis neque eget sapien rutrum scelerisque. Nunc fringilla
+                consequat diam. Donec pharetra fermentum odio ac pellentesque.
+                Curabitur bibendum fringilla arcu in convallis. Phasellus
+                vestibulum lorem eget neque tempor, id consequat lacus eleifend.
               </p>
               <p className="text-lg font-light leading-relaxed mt-0 mb-8 text-gray-700">
                 The kit comes with three pre-built pages to help you get started
@@ -147,18 +154,13 @@ const Home = () => {
               </a>
             </div>
             <div className="w-full md:w-4/12 px-4 mr-auto ml-auto">
-              <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-amber-400">
-                {/* <img
-                  alt="..."
-                  src="https://media-cdn.tripadvisor.com/media/photo-s/15/a4/9b/77/legacy-hotel-at-img-academy.jpg"
-                  className="w-full align-middle rounded-t-lg"
-                /> */}
+              <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-amber-400">
                 <video className="w-full align-middle rounded-t-lg" controls>
-              <source
-                src="https://firebasestorage.googleapis.com/v0/b/siiis-a2398.appspot.com/o/videos%2Fvideo_home.mp4?alt=media&token=d4728384-b3cd-46fd-9b46-bc0f009bb91e"
-                type="video/mp4"
-              />
-            </video>
+                  <source
+                    src="https://firebasestorage.googleapis.com/v0/b/siiis-a2398.appspot.com/o/videos%2Fvideo_home.mp4?alt=media&token=d4728384-b3cd-46fd-9b46-bc0f009bb91e"
+                    type="video/mp4"
+                  />
+                </video>
                 <blockquote className="relative p-8 mb-4">
                   <svg
                     preserveAspectRatio="none"
@@ -173,14 +175,10 @@ const Home = () => {
                     />
                   </svg>
 
-
-
-                  
-                  <h4 className="text-xl font-bold text-white">
-                  Lorem ipsum
-                  </h4>
+                  <h4 className="text-xl font-bold text-white">Lorem ipsum</h4>
                   <p className="text-md font-light mt-2 text-white">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lobortis neque eget sapien rutrum scelerisque.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Nunc lobortis neque eget sapien rutrum scelerisque.
                   </p>
                 </blockquote>
               </div>
@@ -197,13 +195,8 @@ const Home = () => {
           Semillero de Investigación e Innovación en Ingeniería de
           Sistemas.(SIIIS)
         </h3>
-        
       </section>
-
       <Mision_Vision />
-
-     
-      
     </div>
   );
 };
