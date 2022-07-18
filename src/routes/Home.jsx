@@ -31,7 +31,7 @@ const Home = () => {
 
   return (
     <div className={"mt-14"}>
-      <div className="border rounded p-2 ">
+      <div className="border rounded p-2 h-56 sm:h-64 xl:h-80 2xl:h-96">
         <Carousel
           indicators={false}
           slideInterval={3000}
@@ -80,7 +80,7 @@ const Home = () => {
       </div>
 
       {/* -------------------------------------------------------------------------------------------------------------------- */}
-      <section className="pb-20 bg-gray-300 -mt-24">
+      <section className="pb-20 bg-gray-300 -mt-16">
         <div className="container mx-auto px-4">
           <div className="flex flex-row flex-wrap mx-auto">
             <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-2 text-center">
