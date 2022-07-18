@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { UserContext } from "../context/UserProvider";
+import { useNavigate } from "react-router-dom";
 
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from "react";
@@ -19,7 +20,8 @@ function classNames(...classes) {
 
 const Navbar = () => {
 	const { user, logoutUser } = useContext(UserContext);
-	const { data, getData } = useFirestore();
+	const { data, loading, getData } = useFirestore();
+	const navegate = useNavigate();
 
 	useEffect(() => {
 		getData();
@@ -28,10 +30,20 @@ const Navbar = () => {
 	const handleLogout = async () => {
 		try {
 			await logoutUser();
+			navegate("/login");
 		} catch (error) {
 			console.log(error.code);
 		}
 	};
+
+
+	if (loading.getData || loading.getData === undefined) {
+		return (
+		  <div className="text-center text-gray-500 text-xl font-bold h-screen">
+			Cargando...
+		  </div>
+		);
+	  }
 
 	// render navbar
 	return (
@@ -118,8 +130,9 @@ const Navbar = () => {
 														Open user menu
 													</span>
 													<img
-														className="h-8 w-8 rounded-full"
-														src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+														id={"image-profile"}
+														className="h-8 w-8 rounded-full object-cover object-center"
+														src={data[0].profileImage}
 														alt=""
 													/>
 												</Menu.Button>
