@@ -44,16 +44,14 @@ const Profile = () => {
         Cargando...
       </div>
     );
-  } 
+  }
 
   // useState hook
   const onSubmit = async (dataUp) => {
-    console.log("hey",data);
     const dataNew = {
       ...data[0],
       ...dataUp,
     };
-    // console.log(dataNew);
     try {
       await updateData(dataNew);
     } catch (error) {
@@ -98,28 +96,32 @@ const Profile = () => {
             Rol: {data[0].role === "admin" ? "Administrador" : "Usuario"}{" "}
           </label>
         </div>
-        <div className={"flex justify-center items-center my-0 mx-auto"}>
+        <div className={"profile-image flex justify-center items-center my-0 mx-auto"}>
           <figure
             className={
-              "relative w-40 h-40 rounded-full border-2 border-solid border-gray-300 z-0 hover:opacity-100 hover:visible"
+              "relative w-40 h-40 rounded-full border-2 border-solid border-gray-300 z-0"
             }
           >
             <label htmlFor="file-input" className={"cursor-pointer"}>
               <img
                 id={"image-profile"}
                 className={
-                  "w-full h-full rounded-full transition-all duration-300 ease-out"
+                  "w-full h-full rounded-full transition-all duration-300 ease-out object-cover object-center"
                 }
                 src={data[0].profileImage}
                 alt={"profile"}
               />
               <div
                 className={
-                  "absolute top-0 left-0 w-full h-full bg-slate-300 flex flex-col justify-end opacity-0 invisible text-center rounded-full text-xl text-white transition-all duration-300 ease-out"
+                  "profile-image-edit absolute top-0 left-0 w-full h-full flex flex-col justify-end opacity-0 invisible text-center rounded-full text-xl text-white transition-all duration-300 ease-out hover:opacity-100 hover:visible"
                 }
               >
                 <span>Subir foto</span>
-                <i className="fas fa-camera mb-2.5"></i>
+                {/* <i className="fas fa-camera mb-2.5"></i> */}
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mb-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
               </div>
             </label>
 

@@ -3,7 +3,21 @@
 @tailwind utilities;
 
 
+.profile-image-edit {
+  background-color: rgba(0, 0, 0, 0.5);
+}
 
+.profile-image-edit svg {
+  /* centrar horizontalmente */
+  margin: 0 auto;
+    
+
+}
+
+.profile-image figure:hover .profile-image-edit {
+  opacity: 1;
+  visibility: visible;
+}
 
 /* ========= transición texto ============== */
 div#info {
