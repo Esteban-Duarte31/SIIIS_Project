@@ -2,6 +2,8 @@ import { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 import { useFirestore } from "../hooks/useFirestore";
+import { ErrorsFirebase } from "../utils/ErrorsFirebase";
+
 
 const people = [
   {
@@ -25,6 +27,7 @@ function classNames(...classes) {
 //update to role
 const SelectRole = ({ idUser, role }) => {
   const { updateRole } = useFirestore();
+  const [error, setError] = useState();
 
   const [selected, setSelected] = useState(
     role === "user" ? people[0] : people[1]
@@ -32,9 +35,14 @@ const SelectRole = ({ idUser, role }) => {
 
   const handleChange = async (e) => {
     setSelected(e);
+    const role_card = document.getElementById(`role-card-${idUser}`);
+    role_card.innerHTML = e.name
 
     try {
+
       await updateRole({ id: idUser, role: e.id === 1 ? "user" : "admin" });
+      alert("Ahora eres un " + e.name);
+
     } catch (error) {
       console.log(error.code);
       const { code, message } = ErrorsFirebase(error.code);

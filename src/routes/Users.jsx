@@ -9,18 +9,30 @@ const Users = () => {
   const { data, loading, getDataUsers, deleteData } = useFirestore();
 
   const { setError } = useForm();
+  let users = data
 
   useEffect(() => {
     getDataUsers();
   }, []);
 
-  // if (loading.getDataUsers) {
   if (loading.getDataUsers || loading.getDataUsers === undefined) {
     return (
       <div className="text-center text-gray-500 text-xl font-bold h-screen">
         Cargando...
       </div>
     );
+  } else {
+    // ordernar la lista, primero los admins y luego los usuarios
+    users = data.sort((a, b) => {
+      if (a.role === "admin" && b.role !== "admin") {
+        return -1;
+      } else if (a.role !== "admin" && b.role === "admin") {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    console.log(users);
   }
 
   const handleClickDelete = async (id) => {
@@ -34,7 +46,7 @@ const Users = () => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col p-4 pt-14">
       <div className="grid grid-cols-6 gap-4 p-6">
         <div className="col-start-1 col-end-3 ...">
           <h1 className="font-semibold text-blue-900 text-3xl">USUARIOS</h1>
@@ -83,13 +95,13 @@ const Users = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-1 gap-x-8 lg:grid-cols-2 xl:grid-cols-3 xl:gap-x-8 ">
-        {data.map((item) => (
+      <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-1 gap-x-8 lg:grid-cols-2 xl:grid-cols-3 xl:gap-x-8">
+        {users.map((item) => (
           <div
             key={item.userUID}
-            className="flex font-sans border-t-4 border-teal-800"
+            className="flex font-sans border-t-4 border-teal-800 rounded-lg"
           >
-            <div className="flex-none w-48 relative">
+            <div className="flex-none w-1/3 relative">
               <img
                 src={item.profileImage}
                 alt=""
@@ -102,7 +114,7 @@ const Users = () => {
                 <h1 className="flex-auto text-lg font-semibold text-slate-900">
                   {item.name}
                 </h1>
-                <div className="text-lg font-semibold text-slate-500">
+                <div className="text-lg font-semibold text-slate-500" id={`role-card-${item.id}`}>
                   {item.role === "user" ? "Usuario" : "Administrador"}
                 </div>
                 <div className="w-full flex-auto">
